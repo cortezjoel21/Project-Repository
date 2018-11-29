@@ -1,6 +1,7 @@
 package app.controller;
 
 import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.Map;
 
@@ -24,12 +25,12 @@ public class Dashboard {
 
 	private Map<BigInteger, UserDto> userMap;
 
-//	public static void main(String[] args) {
-//		DashboardServiceImpl dsi = new DashboardServiceImpl();
-//		System.out.println("====: " + dsi.getUserMap());
-//	}
+	DashboardServiceImpl dsi;
+	public Dashboard() {
+		 this.dsi  = new DashboardServiceImpl();
+	}
 
-	DashboardServiceImpl dsi  = new DashboardServiceImpl();
+	
 	
 	@CrossOrigin
 	@RequestMapping(value="/dashboard/getUsers", method=RequestMethod.GET, 
@@ -53,12 +54,13 @@ public class Dashboard {
 		return new ResponseEntity<Collection<UserDto>>(user, headers, HttpStatus.OK);
 	}
 	
-	@CrossOrigin
+		@CrossOrigin
 	@PostMapping(value="/dashboard/addUser")
 	public ResponseEntity<Collection<UserDto>> addUser(@RequestBody UserDto userDto){
 		System.out.println("====userDto: " + userDto.getUsername());
 		HttpHeaders headers = new HttpHeaders();
-	    headers.add("Content-Type", "application/json,");
+		headers.add(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE);
+		headers.add(HttpHeaders.ACCEPT_CHARSET, StandardCharsets.UTF_8.name());
 	    this.dsi.addUser(userDto);
 		return new ResponseEntity<Collection<UserDto>>(headers, HttpStatus.OK);
 	}
@@ -66,10 +68,11 @@ public class Dashboard {
 	@CrossOrigin
 	@PostMapping(value="/dashboard/updateUser")
 	public ResponseEntity<Collection<UserDto>> updateUser(@RequestBody UserDto userDto){
-		System.out.println("====userDto: " + userDto.getUsername());
+		System.out.println("====userDto: " + userDto.getId());
 		HttpHeaders headers = new HttpHeaders();
-	    headers.add("Content-Type", "application/json,");
-	    this.dsi.addUser(userDto);
+		headers.add(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE);
+		headers.add(HttpHeaders.ACCEPT_CHARSET, StandardCharsets.UTF_8.name());
+	    this.dsi.updateUser(userDto);
 		return new ResponseEntity<Collection<UserDto>>(headers, HttpStatus.OK);
 	}
 }

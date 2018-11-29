@@ -4,11 +4,18 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoCredential;
 
-public class ConnectToDB {
+abstract class ConnectToDB {
 	private MongoCredential credential;
 	private MongoClient mongo;
+	protected MongoDatabase database;
 	
-	public void openConnection() {
+	public ConnectToDB(){
+		openConnection();
+		this.database = getAccessDatabase();
+	}
+	
+	
+	private void openConnection() {
 		// Creating a Mongo client
 		this.mongo = new MongoClient("localhost", 27017);
 
@@ -18,7 +25,7 @@ public class ConnectToDB {
 	}
 	
 	
-	public MongoDatabase getAccessDatabase() {
+	private MongoDatabase getAccessDatabase() {
 		// Accessing the database
 		MongoDatabase database = this.mongo.getDatabase("mydatabase");
 		System.out.println("Credentials ::" + this.credential);
@@ -42,6 +49,16 @@ public class ConnectToDB {
 
 	public void setMongo(MongoClient mongo) {
 		this.mongo = mongo;
+	}
+
+
+	public MongoDatabase getDatabase() {
+		return database;
+	}
+
+
+	public void setDatabase(MongoDatabase database) {
+		this.database = database;
 	}
 	
 	

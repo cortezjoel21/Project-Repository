@@ -16,57 +16,22 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoCredential;
 
-public class UpdatingDocument {
+public class UpdatingDocument extends ConnectToDB{
 
 	public void updateUser(UserDto user) {
-
-		// Open Database Connection
-		ConnectToDB ctdb = new ConnectToDB();
-		ctdb.openConnection();
-		MongoDatabase database = ctdb.getAccessDatabase();
-
 		// Retrieving a collection
-		MongoCollection<Document> collection = database.getCollection("user");
+		MongoCollection<Document> collection = this.database.getCollection("user");
 		System.out.println("Collection sampleCollection selected successfully");
 
-		collection.updateOne(Filters.eq("id", 1), Updates.set("accessType", user.getAccessType()));
-		collection.updateOne(Filters.eq("id", 1), Updates.set("accessTypeNo", user.getAccessTypeNo()));
+		collection.updateOne(Filters.eq("id", user.getId().intValue()), Updates.set("accessType", user.getAccessType()));
+		collection.updateOne(Filters.eq("id", user.getId().intValue()), Updates.set("accessTypeNo", user.getAccessTypeNo()));
 		System.out.println("Document update successfully...");
 
 		// Retrieving the documents after updation
 		// Getting the iterable object
 		BasicDBObject query = new BasicDBObject();
-		query.put("id", user.getId());
+		query.put("id", user.getId().intValue());
 		FindIterable<Document> iterDoc = collection.find(query);
-		int i = 1;
-
-		// Getting the iterator
-		Iterator it = iterDoc.iterator();
-
-		while (it.hasNext()) {
-			System.out.println(it.next());
-			i++;
-		}
-	}
-
-	public void main() {
-
-		// Open Database Connection
-		ConnectToDB ctdb = new ConnectToDB();
-		ctdb.openConnection();
-		MongoDatabase database = ctdb.getAccessDatabase();
-
-		// Retrieving a collection
-		MongoCollection<Document> collection = database.getCollection("user");
-		System.out.println("Collection sampleCollection selected successfully");
-
-		collection.updateOne(Filters.eq("id", 1), Updates.set("accessType", "Normal"));
-		collection.updateOne(Filters.eq("id", 1), Updates.set("accessTypeNo", "1"));
-		System.out.println("Document update successfully...");
-
-		// Retrieving the documents after updation
-		// Getting the iterable object
-		FindIterable<Document> iterDoc = collection.find();
 		int i = 1;
 
 		// Getting the iterator

@@ -10,16 +10,12 @@ import app.dao.ConnectToDB;
 import java.util.Iterator;
 import org.bson.Document;
 
-public class DeletingDocument {
+public class DeletingDocument extends ConnectToDB{
 
 	public void main() {
-		// Open Database Connection
-		ConnectToDB ctdb = new ConnectToDB();
-		ctdb.openConnection();
-		MongoDatabase database = ctdb.getAccessDatabase();
 
 		// Retrieving a collection
-		MongoCollection<Document> collection = database.getCollection("user");
+		MongoCollection<Document> collection = this.database.getCollection("user");
 		System.out.println("Collection sampleCollection selected successfully");
 
 		// Deleting the documents
