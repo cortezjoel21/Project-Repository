@@ -12,14 +12,14 @@ import org.bson.Document;
 
 public class DeletingDocument extends ConnectToDB{
 
-	public void main() {
+	public void deleteUser(Integer userId) {
 
 		// Retrieving a collection
 		MongoCollection<Document> collection = this.database.getCollection("user");
 		System.out.println("Collection sampleCollection selected successfully");
 
 		// Deleting the documents
-		collection.deleteOne(Filters.eq("id", 1));
+		collection.deleteOne(Filters.eq("id", userId));
 		System.out.println("Document deleted successfully...");
 
 		// Retrieving the documents after updation

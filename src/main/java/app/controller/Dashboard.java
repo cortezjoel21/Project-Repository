@@ -24,23 +24,23 @@ import app.service.impl.DashboardServiceImpl;
 public class Dashboard {
 
 	private Map<BigInteger, UserDto> userMap;
-
-	DashboardServiceImpl dsi;
+	private DashboardServiceImpl dsi;
+	private HttpHeaders headers = new HttpHeaders();
+	
 	public Dashboard() {
 		 this.dsi  = new DashboardServiceImpl();
+		 this.headers.add("Content-Type", "application/json");
+		 this.headers.add(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE);
+		 this.headers.add(HttpHeaders.ACCEPT_CHARSET, StandardCharsets.UTF_8.name());
 	}
 
-	
-	
 	@CrossOrigin
 	@RequestMapping(value="/dashboard/getUsers", method=RequestMethod.GET, 
 			produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Collection<UserDto>> getUsers(){
 		this.userMap = dsi.getUsersMap();
 		Collection<UserDto> users = this.userMap.values();
-		HttpHeaders headers = new HttpHeaders();
-	    headers.add("Content-Type", "application/json");
-		return new ResponseEntity<Collection<UserDto>>(users, headers, HttpStatus.OK);
+		return new ResponseEntity<Collection<UserDto>>(users, this.headers, HttpStatus.OK);
 	}
 	
 	@CrossOrigin
@@ -49,30 +49,31 @@ public class Dashboard {
 	public ResponseEntity<Collection<UserDto>> getUser(@PathVariable("id") BigInteger id){
 		this.userMap = dsi.getUserMap(id.intValue());
 		Collection<UserDto> user = this.userMap.values();
-		HttpHeaders headers = new HttpHeaders();
-	    headers.add("Content-Type", "application/json");
-		return new ResponseEntity<Collection<UserDto>>(user, headers, HttpStatus.OK);
+		return new ResponseEntity<Collection<UserDto>>(user, this.headers, HttpStatus.OK);
 	}
 	
-		@CrossOrigin
+	@CrossOrigin
 	@PostMapping(value="/dashboard/addUser")
-	public ResponseEntity<Collection<UserDto>> addUser(@RequestBody UserDto userDto){
-		System.out.println("====userDto: " + userDto.getUsername());
+	public ResponseEntity addUser(@RequestBody UserDto userDto){
 		HttpHeaders headers = new HttpHeaders();
-		headers.add(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE);
-		headers.add(HttpHeaders.ACCEPT_CHARSET, StandardCharsets.UTF_8.name());
+		
 	    this.dsi.addUser(userDto);
-		return new ResponseEntity<Collection<UserDto>>(headers, HttpStatus.OK);
+		return new ResponseEntity<>(headers, HttpStatus.OK);
 	}
 	
 	@CrossOrigin
 	@PostMapping(value="/dashboard/updateUser")
-	public ResponseEntity<Collection<UserDto>> updateUser(@RequestBody UserDto userDto){
+	public ResponseEntity updateUser(@RequestBody UserDto userDto){
 		System.out.println("====userDto: " + userDto.getId());
-		HttpHeaders headers = new HttpHeaders();
-		headers.add(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE);
-		headers.add(HttpHeaders.ACCEPT_CHARSET, StandardCharsets.UTF_8.name());
 	    this.dsi.updateUser(userDto);
-		return new ResponseEntity<Collection<UserDto>>(headers, HttpStatus.OK);
+		return new ResponseEntity<>(this.headers, HttpStatus.OK);
+	}
+	
+	@CrossOrigin
+	@PostMapping(value="/dashboard/deleteUser")
+	public ResponseEntity deleteUser(@RequestBody UserDto userDto){
+		System.out.println("====userDto: " + userDto.getId());
+	    this.dsi.deleteUser(userDto);
+		return new ResponseEntity<>(this.headers, HttpStatus.OK);
 	}
 }

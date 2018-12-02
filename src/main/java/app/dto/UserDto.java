@@ -9,6 +9,8 @@ public class UserDto {
 	private String email;
 	private String accessType;
 	private String accessTypeNo;
+	private Boolean logIn;
+	private String errorMsg;
 	
 	public BigInteger getId() {
 		return id;
@@ -46,18 +48,18 @@ public class UserDto {
 	public void setAccessTypeNo(String accessTypeNo) {
 		this.accessTypeNo = accessTypeNo;
 	}
+	public Boolean getLogIn() {
+		return logIn;
+	}
+	public void setLogIn(Boolean logIn) {
+		this.logIn = logIn;
+	}
+	public String getErrorMsg() {
+		return errorMsg;
+	}
+	public void setErrorMsg(String errorMsg) {
+		this.errorMsg = errorMsg;
+	}
 	
-//	@Override
-//	public String toString() {
-//		return "UserDto [" + 
-//				"username=" + this.username + ", " + 
-//				"password=" + this.password + ", " +
-//				"firstName=" + this.firstName + ", " +
-//				"lastName=" + this.lastName + ", " +
-//				"birthDate=" + this.birthDate + ", " +
-//				"address=" + this.address + ", " +
-//				"company=" + this.company + ", " +
-//				"position=" + this.position + 
-//				"]";
-//	}
+	
 }

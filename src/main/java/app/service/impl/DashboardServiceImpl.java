@@ -14,8 +14,8 @@ import org.springframework.stereotype.Service;
 
 import com.mongodb.BasicDBObject;
 
+import app.dao.DeletingDocument;
 import app.dao.InsertingDocument;
-import app.dao.LoginDao;
 import app.dao.RetrievingDocument;
 import app.dao.UpdatingDocument;
 import app.dto.UserDto;
@@ -73,6 +73,12 @@ public class DashboardServiceImpl {
 	public UserDto updateUser(UserDto userDto) {
 		UpdatingDocument up = new UpdatingDocument();
 		up.updateUser(userDto);
+		return userDto;
+	}
+
+	public UserDto deleteUser(UserDto userDto) {
+		DeletingDocument dd = new DeletingDocument();
+		dd.deleteUser(userDto.getId().intValue());
 		return userDto;
 	}
 	

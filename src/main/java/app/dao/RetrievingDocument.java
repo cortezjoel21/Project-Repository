@@ -30,14 +30,5 @@ public class RetrievingDocument extends ConnectToDB{
 		return iterableDoc;
 	}
 	
-//
-//	public static void main(String[] args) {
-//		RetrievingDocument rad = new RetrievingDocument();
-//		
-//		for (Document doc : rad.getTableDataDoc("user")) {
-//			System.out.println("======doc: " + doc.getInteger("id"));
-//			System.out.println("======doc: " + doc.getString("username"));
-//			System.out.println("======doc: " + doc.getString("email"));
-//		}
-//	}
+
 }
