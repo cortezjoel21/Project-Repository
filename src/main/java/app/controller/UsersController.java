@@ -31,8 +31,6 @@ public class UsersController {
 		user.setUsername("username0");
 		user.setId(BigInteger.valueOf(0));
 		user.setEmail("email0");
-		
-		
 		return new ResponseEntity<UserDto>(user, HttpStatus.OK);
 	}
 }

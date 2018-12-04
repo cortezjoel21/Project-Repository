@@ -70,7 +70,7 @@ public class DashboardServiceImpl {
 		return userDto;
 	}
 	
-	public UserDto updateUser(UserDto userDto) {
+	public UserDto updateUserType(UserDto userDto) {
 		UpdatingDocument up = new UpdatingDocument();
 		up.updateUser(userDto);
 		return userDto;
