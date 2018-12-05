@@ -29,6 +29,4 @@ public class RetrievingDocument extends ConnectToDB{
 		FindIterable<Document> iterableDoc = collection.find(query);
 		return iterableDoc;
 	}
-	
-
 }
