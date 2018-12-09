@@ -8,7 +8,7 @@ This is an application that can give tasks to the registered users.
 > 4. Intellij
 
 ## Steps to Setup
-> - **1.Clone the application**
+> - **Clone the application**
 >   - git clone (backend) https://github.com/cortezjoel21/Project-Repository.git
 > - **Import the project in Intellig**
 > - **Run the project**
