@@ -8,20 +8,20 @@ This is an application that can give tasks to the registered users.
 > 4. Intellij
 
 ##Steps to Setup
-**1.Clone the application**
-> - git clone (backend) https://github.com/cortezjoel21/Project-Repository.git
-> Import the project in Intellig
-> Run the project
+> - **1.Clone the application**
+>   - git clone (backend) https://github.com/cortezjoel21/Project-Repository.git
+> - **Import the project in Intellig**
+> - **Run the project**
 
 ## About the Project
-This Rest API has the methods that access the MongoDB, methods are to:
+**This Rest API has the methods that access the MongoDB, methods are to:**
 > 1. Save and update users
 > 2. Edit user's access
 > 3. Add, Edit and Delete tasks to the users
 
-There are 5 links that is provided this Rest API:
-> http://localhost:3000/registration/login
-> http://localhost:3000/registration/addUser	
-> http://localhost:3000/dashboard/getUsers
-> http://localhost:3000/dashboard/updateUser
-> http://localhost:3000/dashboard/deleteUser
+**There are 5 links that is provided this Rest API:**
+> - http://localhost:3000/registration/login
+> - http://localhost:3000/registration/addUser	
+> - http://localhost:3000/dashboard/getUsers
+> - http://localhost:3000/dashboard/updateUser
+> - http://localhost:3000/dashboard/deleteUser
