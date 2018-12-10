@@ -14,6 +14,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 //import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -85,18 +86,7 @@ public class Dashboard {
 //		return new ResponseEntity<Collection<UserDto>>(user, this.headers, HttpStatus.OK);
 //	}
 
-	@ApiOperation(value = "register user", response = UserDto.class)
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "User Added", response = UserDto.class),
-			@ApiResponse(code = 500, message = "Internal Server Error"),
-			@ApiResponse(code = 404, message = "Users not found") })
-	@CrossOrigin
-	@PostMapping(value = "/addUser")
-	public ResponseEntity addUser(@RequestBody UserDto userDto) {
-		HttpHeaders headers = new HttpHeaders();
 
-		this.dsi.addUser(userDto);
-		return new ResponseEntity<>(headers, HttpStatus.OK);
-	}
 
 	@ApiOperation(value = "update user type", response = UserDto.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "User Updated", response = UserDto.class),

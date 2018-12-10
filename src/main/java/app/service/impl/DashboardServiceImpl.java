@@ -37,7 +37,7 @@ public class DashboardServiceImpl {
 			user.setEmail(doc.getString("email"));
 			user.setUsername(doc.getString("username"));
 			usersMap.put(user.getId(), user);
-			System.out.println("====user: " + user.getUsername());
+
 		}
 		return usersMap;
 	}
@@ -58,15 +58,14 @@ public class DashboardServiceImpl {
 			user.setEmail(doc.getString("email"));
 			user.setUsername(doc.getString("username"));
 			userMap.put(user.getId(), user);
-			System.out.println("====user: " + user.getUsername());
 		}
 		return userMap;
 	}
 
 	public UserDto getUserAuth() {
 		UserDto user = new UserDto();
-		user.setUsername("bill");
-		user.setPassword("abc123");
+		user.setUsername("username0");
+		user.setPassword("password0");
 		user.setAccessType("ADMIN");
 		return user;
 	}

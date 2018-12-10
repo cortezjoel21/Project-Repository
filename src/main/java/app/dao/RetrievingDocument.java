@@ -21,7 +21,7 @@ public class RetrievingDocument extends ConnectToDB{
 	
 	public FindIterable<Document> getRowFromTableDoc(String tableName, BasicDBObject query) {
 		// Retrieving a collection
-		MongoCollection<Document> collection = this.database.getCollection(tableName);
+		MongoCollection<Document> collection	 = this.database.getCollection(tableName);
 		System.out.println("Collection sampleCollection selected successfully");
 
 		// Getting the iterable object

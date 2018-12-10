@@ -33,8 +33,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
-//		String passEcyrpted = new BCryptPasswordEncoder().encode("abc123");
-//		System.out.println("passEcyrpted: " + passEcyrpted);
 		auth.inMemoryAuthentication().withUser(this.user.getUsername()).password("{noop}" + this.user.getPassword()).roles(this.user.getAccessType().toUpperCase());
 	}
 

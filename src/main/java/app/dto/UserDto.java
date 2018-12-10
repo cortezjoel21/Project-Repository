@@ -11,6 +11,7 @@ public class UserDto {
 	private String accessTypeNo;
 	private Boolean logIn;
 	private String errorMsg;
+	private String auth;
 	
 	public BigInteger getId() {
 		return id;
@@ -60,5 +61,12 @@ public class UserDto {
 	public void setErrorMsg(String errorMsg) {
 		this.errorMsg = errorMsg;
 	}
+	public String getAuth() {
+		return auth;
+	}
+	public void setAuth(String auth) {
+		this.auth = auth;
+	}
+	
 	
 }
