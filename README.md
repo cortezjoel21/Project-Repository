@@ -12,6 +12,7 @@ This is an application that can give tasks to the registered users.
 >   - git clone (backend) https://github.com/cortezjoel21/Project-Repository.git.
 > - **Import the project in Intellig.**
 > - **Run the project.**
+> - Access the swagger in this link http://localhost:8080/swagger-ui.html#/
 
 ## About the Project
 **This Rest API has the methods that access the MongoDB, methods are to:**
